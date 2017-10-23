@@ -1,7 +1,26 @@
 extends layout
 
 block content
-    p Gib Spielernamen ein:
-    input(type='text', name='s', placeholder='Suche Spieler...')#input
-    input(type='submit', value='Starte Suche')
-    div#result
+    form#searchForm.flex-item
+        p Gib Spielernamen ein:
+        input(type='text', name='nameInput', placeholder='Suche Spieler...')#input
+        input(type='submit', value='Starte Suche')
+    div.loading.flex-item.hidden
+        p Loading...
+    div.rTable.flex-item.proposal-list
+        div.rTableHeading
+            div.rTableHead Name
+            div.rTableHead Aktiv
+            div.rTableHead Allianz
+        div.rTableBody
+            if (proposals)
+                each _,i in proposals
+                    div.rTableRow
+                        div.rTableCell
+                            a(href='http://localhost:3000/singleuser?name=#{proposals[i]}').name-links= proposals[i]
+                        div.rTableCell Kevin
+                        div.rTableCell Kevin
+        div.rTableFoot
+            div.rTableHead Life
+            div.rTableHead is
+            div.rTableHead Ogame!

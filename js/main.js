@@ -1,22 +1,55 @@
-let $ = require("jquery");
+let $ = require('jquery');
+let cookie = require('common-js-cookie');
 
 init();
-
 function init() {
-    $("document").ready(function () {
-        $("#input").click(function(event) {
+    $('document').ready(function () {
+        $('.loading').addClass('hidden');
+
+        let href = document.location.href;
+        let lastPathSegment = href.substr(href.lastIndexOf('/') + 1);
+        if (lastPathSegment.toLowerCase().indexOf('users') >= 0)
+        {
+            $('.content').addClass('vertical');
+            if (cookie.hasItem('loaded'))
+            {
+                $('.proposal-list').removeClass('hidden');
+            }
+            else
+            {
+                $('.proposal-list').addClass('hidden');
+            }
+        }
+        else
+        {
+            $('.content').removeClass('vertical');
+        }
+
+        $('#searchForm').submit(function(event) {
             event.preventDefault();
-            console.log("sdfsaf");
-            let $form = $(this),
-                term = $form.val(),
-                url = "http://localhost:3000/users";
+
+            if (!cookie.hasItem('loaded'))
+            {
+                cookie.setItem('loaded', true);
+            }
+
+            /* Show Loading gif, hide table */
+            $('.loading').removeClass('hidden');
+            $('.proposal-list').addClass('hidden');
+
+            let inputString = $('#input').val();
+            let baseUrl = 'http://localhost:3000/users';
+            let urlQueryPart = '?search=';
+
+            let url = baseUrl + urlQueryPart + inputString;
 
             $.ajax(
                 {
-                    url: url + '?name=' + term,
+                    url: url,
                     type: 'get',
+                    cache: false,
                     success: function (res) {
-                        console.log(res);
+                        location.reload();
                     },
                     error: function (xhr) {
                         console.error(xhr);

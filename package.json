@@ -4,19 +4,23 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "npm run build:js && npm run build:jsmin",
-    "build:js": "node ./node_modules/browserify/bin/cmd.js js/main.js -o js/bundle.js",
+    "build": "npm run build:js",
+    "build:js": "node ./node_modules/browserify/bin/cmd.js js/main.js -o public/javascripts/bundle.js",
     "build:jsmin": "babili js/bundle.js > public/javascripts/bundle.min.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "common-js-cookie": "^1.0.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
     "jquery": "^3.2.1",
+    "js-cookie": "^2.1.4",
     "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "sync-request": "^4.1.0",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "babili": "^0.1.4",
