@@ -18,6 +18,7 @@ function fetchNameProposals(queryParam)
     parseString(xml, function (err, result)
     {
         nameProposals = filterNames(result, queryParam);
+
         //getPlayerActivity(result, )
     });
 

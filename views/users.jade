@@ -15,7 +15,8 @@ block content
         div.rTableBody
             if (proposals)
                 each _,i in proposals
-                    div.rTableRow
+                    - let bgcolor = (i%2) ? '#cacaca': 'white';
+                    div(style='background-color: #{bgcolor};').rTableRow
                         div.rTableCell
                             a(href='http://localhost:3000/singleuser?name=#{proposals[i]}').name-links= proposals[i]
                         div.rTableCell Kevin
