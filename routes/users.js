@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let searched = false;
+let queryParam;
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('users', {title: 'Ogame Tool - User Search'});
+router.get('/', function (req, res, next) {
+    if (req.query)
+    {
+        searched = true;
+        queryParam = req.query.name;
+    }
+    res.render('users', {title: 'Ogame Tool - User Search', name: queryParam});
 });
 
 module.exports = router;

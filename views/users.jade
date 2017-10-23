@@ -1,3 +1,7 @@
+extends layout
+
 block content
-    div
-        p Hallo
+    p Gib Spielernamen ein:
+    input(type='text', name='s', placeholder='Suche Spieler...')#input
+    input(type='submit', value='Starte Suche')
+    div#result
