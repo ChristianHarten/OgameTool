@@ -48,7 +48,7 @@ function init() {
                     url: url,
                     type: 'get',
                     cache: false,
-                    success: function (res) {
+                    success: function () {
                         location.reload();
                     },
                     error: function (xhr) {
@@ -66,6 +66,7 @@ function init() {
                 $("#result").empty().append(content);
             });*/
         });
+        /*
         $(".tile").click(function () {
             $.get("http://localhost:3000/users", function (data, status) {
                 $(".tile").fadeOut('slow', function () {
@@ -73,5 +74,6 @@ function init() {
                 });
             });
         });
+        */
     });
 }
